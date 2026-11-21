@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SearchNova helps you discover useful websites, AI tools, free resources and solutions in one place.">
+<title>SearchNova - Discover Anything</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;color:#172033;background:#fff}
+header{height:75px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}
+.logo{font-size:25px;font-weight:800;color:#2563eb}
+nav a{text-decoration:none;color:#526071;margin-left:22px;font-size:14px}
+.hero{text-align:center;padding:100px 18px 65px}
+.tag{display:inline-block;background:#eff6ff;color:#2563eb;padding:9px 16px;border-radius:30px;font-size:13px;margin-bottom:25px}
+h1{font-size:clamp(38px,6vw,65px);line-height:1.12;letter-spacing:-2px}
+h1 span{color:#2563eb}
+.subtitle{max-width:570px;margin:20px auto 30px;color:#687386;line-height:1.7}
+.search{max-width:650px;margin:auto;display:flex;padding:8px;border:1px solid #dce2eb;border-radius:14px;box-shadow:0 8px 30px #18223012}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:14px;font-size:15px}
+button{border:0;background:#2563eb;color:white;padding:14px 22px;border-radius:10px;cursor:pointer;font-weight:bold}
+.chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px auto}
+.chip{background:white;color:#526071;border:1px solid #e5e7eb;border-radius:30px;padding:10px 15px}
+section{max-width:1050px;margin:40px auto;padding:20px}
+h2{font-size:27px;margin-bottom:10px}
+.muted{font-size:14px;color:#758094;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:25px}
+.card{border:1px solid #e8ebf0;border-radius:15px;padding:24px;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 25px #0000000b}
+.emoji{font-size:29px;margin-bottom:15px}
+.card h3{margin-bottom:9px;font-size:17px}
+.card p{font-size:13px;color:#758094;line-height:1.6}
+#results{max-width:850px;margin:25px auto;padding:0 20px}
+.result{padding:20px;border:1px solid #e8ebf0;border-radius:12px;margin:12px 0}
+.result a{color:#2563eb;text-decoration:none;font-weight:bold}
+footer{text-align:center;padding:35px;color:#8993a3;border-top:1px solid #eee;margin-top:60px;font-size:13px}
+@media(max-width:600px){
+header{padding:0 5%}
+nav a{margin-left:10px;font-size:12px}
+.hero{padding-top:75px}
+.search button{padding:12px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">✦ SearchNova</div>
+<nav>
+<a href="#explore">Explore</a>
+<a href="#about">About</a>
+</nav>
+</header>
+
+<main>
+<div class="hero">
+<div class="tag">✦ Discover smarter. Explore further.</div>
+
+<h1>Find the right thing.<br>
+<span>Not just another link.</span></h1>
+
+<p class="subtitle">
+Discover useful tools, websites, learning resources and solutions for whatever you want to do.
+</p>
+
+<div class="search">
+<input id="query" type="text" placeholder="What do you want to find or do?">
+<button onclick="searchNova()">Search ↗</button>
+</div>
+
+<div class="chips">
+<button class="chip" onclick="setSearch('AI tools')">🤖 AI Tools</button>
+<button class="chip" onclick="setSearch('Learn coding')">💻 Coding</button>
+<button class="chip" onclick="setSearch('Free design tools')">🎨 Design</button>
+<button class="chip" onclick="setSearch('Productivity tools')">⚡ Productivity</button>
+</div>
+</div>
+
+<div id="results"></div>
+
+<section id="explore">
+<h2>Explore possibilities</h2>
+<p class="muted">Choose a category and discover something useful.</p>
+
+<div class="cards">
+<div class="card">
+<div class="emoji">🤖</div>
+<h3>AI & Technology</h3>
+<p>Discover AI tools, smart apps and new technology.</p>
+</div>
+
+<div class="card">
+<div class="emoji">🎨</div>
+<h3>Design & Creativity</h3>
+<p>Find tools for images, videos and creative work.</p>
+</div>
+
+<div class="card">
+<div class="emoji">📚</div>
+<h3>Learning</h3>
+<p>Explore courses, tutorials and practice resources.</p>
+</div>
+
+<div class="card">
+<div class="emoji">⚡</div>
+<h3>Productivity</h3>
+<p>Find useful tools to save time and work smarter.</p>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2>A better way to discover</h2>
+<p class="muted">
+SearchNova is being built to help people find useful resources and take their next step with confidence.
+</p>
+</section>
+</main>
+
+<footer>
+© 2026 SearchNova · Discover something new.
+</footer>
+
+<script>
+function setSearch(value){
+document.getElementById("query").value=value;
+searchNova();
+}
+
+function searchNova(){
+const q=document.getElementById("query").value.trim();
+
+if(!q){
+alert("Please enter what you want to find.");
+return;
+}
+
+const safe=encodeURIComponent(q);
+const clean=q.replace(/[&<>"']/g,"");
+
+document.getElementById("results").innerHTML=
+'<div class="result">'+
+'<h3>Explore your search</h3>'+
+'<p style="margin:10px 0;color:#687386">Find resources for: '+clean+'</p>'+
+'<a target="_blank" rel="noopener" href="https://www.google.com/search?q='+safe+'">Find websites on Google ↗</a><br><br>'+
+'<a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+safe+'">Find video tutorials on YouTube ↗</a>'+
+'</div>';
+
+document.getElementById("results").scrollIntoView({behavior:"smooth"});
+}
+
+document.getElementById("query").addEventListener("keydown",function(e){
+if(e.key==="Enter")searchNova();
+});
+</script>
+</body>
+</html>
